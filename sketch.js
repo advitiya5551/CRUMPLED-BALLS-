@@ -1,5 +1,5 @@
 
-var bin1, bin2, bin3, paper,ground1
+var bin1, bin2, bin3, paperObject,ground1
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -21,9 +21,9 @@ function setup() {
 	bin2 = new Bin(400, 660, 10, 50);
 	bin3 = new Bin(350, 670, 100, 10)
 
-	paper = new Paper(30, 200,10 )
+	paperObject = new Paper(30, 200,10 )
 
-	ground1 = new Line(400 , 30 , 800 , 10 );
+	ground1 = new Ground(400 , 680 , 800 , 10 );
 	Engine.run(engine);
 
 }
@@ -38,7 +38,15 @@ function draw() {
 	bin2.display();
 	bin3.display();
 
-	paper.display();
+	paperObject.display();
+
+	ground1.display();
+}
+
+function keyPressed (){
+	if(keyCode === 38){
+		Matter.Body.applyForce(paperObject.body,paperObject.body.position, {x:10 , y:-12});
+	}
 }
 
 
